@@ -3,6 +3,7 @@ package serverless
 import com.typesafe.scalalogging.LazyLogging
 import org.apache.spark.sql.SparkSession
 import org.savvytools.stepfunctions.TaskToken
+import gov.cms.qpp.sparkutils.QPPFunctions
 
 case class Person(id: String, name: String)
 
@@ -29,6 +30,8 @@ object SimpleSparkApp extends LazyLogging {
         .builder()
         .appName("Test EMR Serverless")
         .getOrCreate()
+
+      QPPFunctions.addResourceToContext("")
 
       val token = args(0)
       try {
